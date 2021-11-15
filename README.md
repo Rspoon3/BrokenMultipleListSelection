@@ -24,5 +24,9 @@ In "working" mode, the selection works properly. In "broken" mode, you can see t
 This is caused by having the list items wrapped in a NavigationLink with a Context Menu.
 
 
+https://user-images.githubusercontent.com/42879920/141809398-494df7c0-5072-46f5-9541-0c4103d92842.mp4
+
+
+
 **Expected Results:**
 Both modes should work as it does in "working" mode.
