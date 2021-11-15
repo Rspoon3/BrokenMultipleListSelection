@@ -12,7 +12,7 @@ struct ContentView: View {
     @State private var viewType = ViewType.working
     
     enum ViewType: String, CaseIterable{
-        case working, broken
+        case working, broken, workAround
     }
     
     var body: some View {
@@ -34,6 +34,8 @@ struct ContentView: View {
                     WorkingList(selection: $selection)
                 case .broken:
                     BrokenList(selection: $selection)
+                case .workAround:
+                    WorkAroundList(selection: $selection)
                 }
             }
             .toolbar {
@@ -83,6 +85,32 @@ struct BrokenList: View {
                 .contextMenu{
                     Button("Print Title"){
                         print("This is row \(i)")
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+struct WorkAroundList: View {
+    @Binding var selection: Set<Int>
+    @Environment(\.editMode) var editMode
+    
+    var body: some View {
+        List(selection: $selection){
+            ForEach(0..<20){ i in
+                NavigationLink {
+                    Text("This is row \(i)")
+                } label: {
+                    Text("This is row \(i)")
+                }
+                .contextMenu{
+                    if editMode?.wrappedValue == .inactive{
+                        Button("Print Title"){
+                            print("This is row \(i)")
+                        }
                     }
                 }
             }

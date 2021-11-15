@@ -25,10 +25,63 @@ In "working" mode, the selection works properly. In "broken" mode, you can see t
 
 This is caused by having the list items wrapped in a NavigationLink with a Context Menu.
 
-
+```
+struct BrokenList: View {
+    @Binding var selection: Set<Int>
+    
+    var body: some View {
+        List(selection: $selection){
+            ForEach(0..<20){ i in
+                NavigationLink {
+                    Text("This is row \(i)")
+                } label: {
+                    Text("This is row \(i)")
+                }
+                .contextMenu{
+                    Button("Print Title"){
+                        print("This is row \(i)")
+                    }
+                }
+            }
+        }
+    }
+}
+```
 https://user-images.githubusercontent.com/42879920/141809398-494df7c0-5072-46f5-9541-0c4103d92842.mp4
 
 
 
 **Expected Results:**
 Both modes should work as it does in "working" mode.
+
+
+**Work Around**
+
+Tap into the editMode environment variable, and use an if statement on the button in the context menu.
+
+
+```
+struct WorkAroundList: View {
+    @Binding var selection: Set<Int>
+    @Environment(\.editMode) var editMode
+    
+    var body: some View {
+        List(selection: $selection){
+            ForEach(0..<20){ i in
+                NavigationLink {
+                    Text("This is row \(i)")
+                } label: {
+                    Text("This is row \(i)")
+                }
+                .contextMenu{
+                    if editMode?.wrappedValue == .inactive{
+                        Button("Print Title"){
+                            print("This is row \(i)")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
