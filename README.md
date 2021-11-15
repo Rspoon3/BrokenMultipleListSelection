@@ -25,7 +25,7 @@ In "working" mode, the selection works properly. In "broken" mode, you can see t
 
 This is caused by having the list items wrapped in a NavigationLink with a Context Menu.
 
-```
+```swift
 struct BrokenList: View {
     @Binding var selection: Set<Int>
     
@@ -60,7 +60,7 @@ Both modes should work as it does in "working" mode.
 Tap into the editMode environment variable, and use an if statement on the button in the context menu.
 
 
-```
+```swift
 struct WorkAroundList: View {
     @Binding var selection: Set<Int>
     @Environment(\.editMode) var editMode
