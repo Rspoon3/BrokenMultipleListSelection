@@ -47,7 +47,11 @@ struct BrokenList: View {
     }
 }
 ```
-https://user-images.githubusercontent.com/42879920/141809398-494df7c0-5072-46f5-9541-0c4103d92842.mp4
+
+
+
+https://user-images.githubusercontent.com/42879920/141813146-c64e6fac-be55-4b0b-bd85-5403c1a220f8.mp4
+
 
 
 
